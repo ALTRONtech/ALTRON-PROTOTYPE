@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altron</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: #111;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .Profile {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #0ff, #004);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+      color: #000;
+      box-shadow: 0 0 15px #0ff;
+      margin-right: 1rem;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        box-shadow: 0 0 15px #0ff;
+      }
+
+      to {
+        box-shadow: 0 0 30px #0ff;
+      }
+    }
+
+    .dashboard {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .chat {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .chat-bubble {
+      max-width: 70%;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      background: rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 10px #0ff4;
+      animation: fadeIn 0.5s;
+    }
+
+    .chat-bubble.user {
+      align-self: flex-end;
+      background: rgba(0, 255, 255, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem;
+      border-top: 1px solid #222;
+      background: #111;
+    }
+
+    .control-button {
+      background: #0ff2;
+      color: #0ff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #0ff4;
+    }
+
+    .control-button:hover {
+      background: #0ff4;
+      box-shadow: 0 0 20px #0ff8;
+    }
+
+
+
+    .text {
+      background: #0ff2;
+      color: #0ff;
+      text-align: center;
+      height: 40px;
+      width: 70%;
+      border: none;
+      border-radius: 1rem;
+      margin: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #0ff4;
+
+    }
+
+    .Send {
+      background: #0ff2;
+      color: #0ff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #0ff4;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="avatar"><img src="/Ai/profile.jpg" alt="" c class="Profile"></div>
+    <h1>Altron</h1>
+  </header>
+
+  <div class="dashboard">
+    <div class="chat" id="chat">
+      <div class="chat-bubble">Hello, I'm Altron. How can I assist you today?</div>
+    </div>
+  </div>
+  <div>
+    <input type="text" class="text" placeholder="Ask Anything....">
+    <button type="submit" class="Send">Send</button>
+  </div>
+  <div class="controls">
+    <button class="control-button" onclick="sendMessage('What can you do?')">Voice Input</button>
+    <button class="control-button" onclick="sendMessage('Show my tasks')">Tasks</button>
+    <button class="control-button" onclick="sendMessage('Open settings')">Controls</button>
+  </div>
+
+  <script>
+    function sendMessage(message) {
+      const chat = document.getElementById('chat');
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user';
+      userBubble.textContent = message;
+      chat.appendChild(userBubble);
+
+      setTimeout(() => {
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'chat-bubble';
+        aiBubble.textContent = `I can Do what You Want: "${message}"`;
+        chat.appendChild(aiBubble);
+        chat.scrollTop = chat.scrollHeight;
+      }, 800);
+    }
+  </script>
+</body>
+
+</html>

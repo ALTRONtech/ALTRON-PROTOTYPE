@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Protected Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    input[type="password"] {
+      padding: 10px;
+      width: 200px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password" />
+    <br/>
+    <button onclick="checkPassword()">Submit</button>
+    <div class="error" id="errorMessage"></div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const userPassword = document.getElementById("passwordInput").value;
+      const correctPassword = "mySecret123";  // <-- Replace with your password
+      const redirectUrl = "/Ai/Altron 1.html";  // <-- Replace with your target link
+
+      if (userPassword === correctPassword) {
+        window.location.href = redirectUrl;
+      } else {
+        document.getElementById("errorMessage").textContent = "Incorrect password. Please try again.";
+      }
+    }
+  </script>
+</body>
+</html>
